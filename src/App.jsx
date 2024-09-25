@@ -8,16 +8,11 @@ const App = () => {
   const [products, setProducts] = useState([]);
 
   let selector = useSelector((state) => state.cart.cartItems);
-  console.log(selector); // Check if the selector contains valid objects
+  console.log(selector);
+  let productArrayStr = JSON.string(selector);
+  localStorage.setItem('products', productArrayStr);
+  
 
-  if (selector && selector.length > 0) {
-
-    let productArrayStr = JSON.stringify(selector);
-    console.log(productArrayStr);
-    localStorage.setItem("products", productArrayStr);
-  } else {
-    console.log("Selector is empty or invalid, not storing in localStorage");
-  }
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
